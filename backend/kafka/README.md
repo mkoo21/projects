@@ -1,5 +1,7 @@
 The docker compose files will provide some basic setup.
 
+Admin credentials for django-admin are admin/password.
+
 ## CLI snippets basics
 
 ### Start up the kafka server standalone (for testing)
