@@ -22,7 +22,15 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
       
-  djangoapp:
+  djangoapp1:
     image: 'django-app'
+    ports: 
+      - "8000:8000"
+    networks:
+      - app-tier
+  djangoapp2:
+    image: 'django-app'
+    ports: 
+      - "8001:8000"
     networks:
       - app-tier
