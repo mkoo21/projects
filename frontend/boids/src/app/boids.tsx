@@ -1,8 +1,9 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const NUM_BOIDS = 5;
-const Z_RANGE = 6; // z axis is not limited by canvas but must be set
-const VISION_RANGE = 3;
+const NUM_BOIDS = 1;
+const Z_RANGE = 0; // 6
+const VISION_RANGE = 5;
 const COLLISION_RANGE = 0.7;
 const VERY_LARGE_NUMBER = 9000; // larger than VISION_RANGE, hopefully
 
@@ -11,25 +12,31 @@ const COHERENCE = 0.02;
 const SEPARATION = 0.1; // must be higher than coherence
 const ALIGNMENT = 0.01;
 
-const SPEED_LIMIT = 0.1;
+const SPEED_LIMIT = 0 // 0.1
 const INITIAL_SPEED = 0.025;
+const INITIAL_POSITION = 0; // 10
+const BOID_SIZE_PARAMS = [0, 0.2, 1];
 
 type Velocity = {
     x: number,
     y: number,
     z: number,
 }
-type Boid = THREE.Mesh<THREE.WireframeGeometry<THREE.ConeGeometry>, THREE.MeshBasicMaterial, THREE.Object3DEventMap>;
+type Boid = THREE.Mesh<THREE.CylinderGeometry, THREE.MeshPhongMaterial, THREE.Object3DEventMap>;
 
-export const initScene = (windowWidth: number, windowHeight: number) => {
+export const initScene = () => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    const camera = new THREE.PerspectiveCamera( 75, 16 / 9, 0.1, 1000 );
     const renderer = new THREE.WebGLRenderer();
 
     camera.position.z = 10;
     
     // lighting
-    const light = new THREE.AmbientLight( 0xcccccc ); // soft white light
+    scene.add( new THREE.AmbientLight( 0x999999 ));
+    const light = new THREE.DirectionalLight( 0xffffff, 3 );
+    light.position.set( 0.5, 0.5, 1 );
+    light.castShadow = true;
+    light.shadow.camera.zoom = 4; // tighter shadow map
     scene.add( light );
 
     return { scene, camera, renderer };
@@ -38,6 +45,8 @@ export const initScene = (windowWidth: number, windowHeight: number) => {
 export const initBoids = (scene: THREE.Scene) => {
     const boids: Boid[] = []; // stores meshes
     const velocities: Velocity[] = []; // track each boid velocity in separate array
+
+    const loader = new GLTFLoader();
     // reset scene
     for(let i = 0; i < scene.children.length; i++) {
         let child = scene.children[i];
@@ -46,19 +55,23 @@ export const initBoids = (scene: THREE.Scene) => {
             i--;
         }
     }
+    const geometryBackground = new THREE.PlaneGeometry( 100, 100 );
+    const materialBackground = new THREE.MeshPhongMaterial( { color: 0x111111 } );
+    const background = new THREE.Mesh( geometryBackground, materialBackground );
+    background.receiveShadow = true;
+    background.position.set( 0, 0, - 1 );
+    scene.add( background );
 
     for( let i = 0; i < NUM_BOIDS; i++ ) {
         // init a single boid to a random starting position
-        const geometry = new THREE.WireframeGeometry(new THREE.ConeGeometry( 0.1, 0.3, 4, 1 ));
-        const material = new THREE.MeshBasicMaterial({ color: 0x5000ee });
+        const geometry = new THREE.CylinderGeometry( ...BOID_SIZE_PARAMS );
+        const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
         let mesh = new THREE.Mesh( geometry, material );
-        // [ mesh.position.x, mesh.position.y, mesh.position.z, mesh.rotation.x, mesh.rotation.y, mesh.rotation.z ] 
-            // = Array.from({ length: 6 }, () => Math.random() * 10 - 5);
-        [ mesh.position.x, mesh.position.y, mesh.position.z ] = [ Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * Z_RANGE - (Z_RANGE / 2)];
-        [ mesh.rotation.x, mesh.rotation.y, mesh.rotation.z ] = Array.from({ length: 3 }, () => Math.random() * 4 - 2)
+        [ mesh.position.x, mesh.position.y, mesh.position.z ] = [ Math.random() * INITIAL_POSITION - INITIAL_POSITION / 2, Math.random() * INITIAL_POSITION - INITIAL_POSITION / 2, Math.random() * Z_RANGE - (Z_RANGE / 2)];
+        // [ mesh.rotation.x, mesh.rotation.y, mesh.rotation.z ] = Array.from({ length: 3 }, () => Math.random() * 4 - 2)
+        mesh.lookAt(new THREE.Vector3(0, 1, 0))
         boids.push(mesh);
         velocities.push({ x: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5), y: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5), z: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5) });
-4
         scene.add( mesh );
     }
     return { boids, velocities };
@@ -171,7 +184,7 @@ const _loop = (camera: THREE.PerspectiveCamera) =>  (boids: Boid[], velocities: 
         [ dx, dy, dz ] = stayInBounds(boids[i], { x: dx, y: dy, z: dz });
 
         // TODO: set rotation
-        boids[i].lookAt(new THREE.Vector3(dx, dy, dz));
+        // boids[i].lookAt(new THREE.Vector3(boids[i].position.x + dx, boids[i].position.y + dy, boids[i].position.z + dz));
         // boids[i].rotation.x = Math.atan(dy / dz) * Math.PI / 180;
         // boids[i].rotation.y = Math.atan(dz / dx) * Math.PI / 180;
         // boids[i].rotation.z = Math.atan(dy / dx) * Math.PI / 180;

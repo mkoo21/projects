@@ -1,13 +1,15 @@
 "use client"
 
 import { useMemo, useEffect } from 'react';
-import { initScene, initBoids, initLoop } from './boids';
+import { initScene, initLoop } from './boids';
 
 const canvasContainerId = "canvas-container";
 const CANVAS_HEIGHT = 600;
 
 export default () => {
-    const { scene, camera, renderer } = useMemo(() => initScene(window.innerHeight, window.innerWidth), []);
+    const { scene, camera, renderer } = useMemo(() => {
+        return initScene();
+    }, []);
 
     useEffect(() => {
         // set renderer dimensions and add it to the dom
