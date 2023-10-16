@@ -1,20 +1,20 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const NUM_BOIDS = 1;
-const Z_RANGE = 0; // 6
-const VISION_RANGE = 5;
-const COLLISION_RANGE = 0.7;
+const NUM_BOIDS = 50;
+const Z_RANGE = 3; // 6
+const VISION_RANGE = 2.2;
+const COLLISION_RANGE = 1.5;
 const VERY_LARGE_NUMBER = 9000; // larger than VISION_RANGE, hopefully
 
 // params
-const COHERENCE = 0.02;
-const SEPARATION = 0.1; // must be higher than coherence
-const ALIGNMENT = 0.01;
+const COHERENCE = 0.025;
+const SEPARATION = 0.08;
+const ALIGNMENT = 0.03;
 
-const SPEED_LIMIT = 0 // 0.1
-const INITIAL_SPEED = 0.025;
-const INITIAL_POSITION = 0; // 10
+const SPEED_LIMIT = 0.1; // 0.1
+const INITIAL_SPEED = 0.04;
+const INITIAL_POSITION = 12; // 10
 const BOID_SIZE_PARAMS = [0, 0.2, 1];
 
 type Velocity = {
@@ -46,7 +46,6 @@ export const initBoids = (scene: THREE.Scene) => {
     const boids: Boid[] = []; // stores meshes
     const velocities: Velocity[] = []; // track each boid velocity in separate array
 
-    const loader = new GLTFLoader();
     // reset scene
     for(let i = 0; i < scene.children.length; i++) {
         let child = scene.children[i];
@@ -59,7 +58,7 @@ export const initBoids = (scene: THREE.Scene) => {
     const materialBackground = new THREE.MeshPhongMaterial( { color: 0x111111 } );
     const background = new THREE.Mesh( geometryBackground, materialBackground );
     background.receiveShadow = true;
-    background.position.set( 0, 0, - 1 );
+    background.position.set( 0, 0, - 10 );
     scene.add( background );
 
     for( let i = 0; i < NUM_BOIDS; i++ ) {
@@ -69,7 +68,7 @@ export const initBoids = (scene: THREE.Scene) => {
         let mesh = new THREE.Mesh( geometry, material );
         [ mesh.position.x, mesh.position.y, mesh.position.z ] = [ Math.random() * INITIAL_POSITION - INITIAL_POSITION / 2, Math.random() * INITIAL_POSITION - INITIAL_POSITION / 2, Math.random() * Z_RANGE - (Z_RANGE / 2)];
         // [ mesh.rotation.x, mesh.rotation.y, mesh.rotation.z ] = Array.from({ length: 3 }, () => Math.random() * 4 - 2)
-        mesh.lookAt(new THREE.Vector3(0, 1, 0))
+        mesh.geometry.rotateX(-Math.PI / 2);
         boids.push(mesh);
         velocities.push({ x: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5), y: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5), z: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5) });
         scene.add( mesh );
@@ -79,7 +78,7 @@ export const initBoids = (scene: THREE.Scene) => {
 
 const getStayInBoundsFromCanvasSize = (width: number, height: number) => (boid: Boid, velocity: Velocity) => {
     // TODO: this calculation is for a cube
-    [ width, height ] = [ 10, 10 ]; // testing
+    [ width, height ] = [ 15, 10 ]; // testing
     const turnFactor = -1;
 
     // u-turn if oob and heading further oob
@@ -184,10 +183,9 @@ const _loop = (camera: THREE.PerspectiveCamera) =>  (boids: Boid[], velocities: 
         [ dx, dy, dz ] = stayInBounds(boids[i], { x: dx, y: dy, z: dz });
 
         // TODO: set rotation
-        // boids[i].lookAt(new THREE.Vector3(boids[i].position.x + dx, boids[i].position.y + dy, boids[i].position.z + dz));
-        // boids[i].rotation.x = Math.atan(dy / dz) * Math.PI / 180;
-        // boids[i].rotation.y = Math.atan(dz / dx) * Math.PI / 180;
-        // boids[i].rotation.z = Math.atan(dy / dx) * Math.PI / 180;
+        const q = new THREE.Quaternion();
+        q.setFromUnitVectors(new THREE.Vector3(0, 0, 0), new THREE.Vector3(dx, dy, dz));
+        boids[i].applyQuaternion(q);
 
         // make final movement
         boids[i].position.x += dx;
