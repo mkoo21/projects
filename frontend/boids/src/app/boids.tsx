@@ -179,13 +179,13 @@ const _loop = (camera: THREE.PerspectiveCamera) =>  (boids: Boid[], velocities: 
 
         // stay in bounds
         const stayInBounds = getStayInBoundsFromCanvasSize(getXBounds(boids[i].position.z), getYBounds(boids[i].position.z));
-        // const stayInBounds = getStayInBoundsFromCanvasSize(getXBounds(0), getYBounds(0));
         [ dx, dy, dz ] = stayInBounds(boids[i], { x: dx, y: dy, z: dz });
 
         // TODO: set rotation
         const q = new THREE.Quaternion();
-        q.setFromUnitVectors(new THREE.Vector3(0, 0, 0), new THREE.Vector3(dx, dy, dz));
+        q.setFromUnitVectors(new THREE.Vector3(boids[i].rotation.x, boids[i].rotation.y, boids[i].rotation.z), new THREE.Vector3(dx, dy, dz));
         boids[i].applyQuaternion(q);
+        debugger;
 
         // make final movement
         boids[i].position.x += dx;
