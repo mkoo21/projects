@@ -16,6 +16,7 @@ const SPEED_LIMIT = 0.1; // 0.1
 const INITIAL_SPEED = 0.04;
 const INITIAL_POSITION = 12; // 10
 const BOID_SIZE_PARAMS = [0, 0.2, 1];
+const TURN_RATE = 0.1;
 
 type Velocity = {
     x: number,
@@ -69,6 +70,7 @@ export const initBoids = (scene: THREE.Scene) => {
         [ mesh.position.x, mesh.position.y, mesh.position.z ] = [ Math.random() * INITIAL_POSITION - INITIAL_POSITION / 2, Math.random() * INITIAL_POSITION - INITIAL_POSITION / 2, Math.random() * Z_RANGE - (Z_RANGE / 2)];
         // [ mesh.rotation.x, mesh.rotation.y, mesh.rotation.z ] = Array.from({ length: 3 }, () => Math.random() * 4 - 2)
         mesh.geometry.rotateX(-Math.PI / 2);
+
         boids.push(mesh);
         velocities.push({ x: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5), y: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5), z: Math.random() * INITIAL_SPEED - (INITIAL_SPEED * 0.5) });
         scene.add( mesh );
@@ -181,11 +183,11 @@ const _loop = (camera: THREE.PerspectiveCamera) =>  (boids: Boid[], velocities: 
         const stayInBounds = getStayInBoundsFromCanvasSize(getXBounds(boids[i].position.z), getYBounds(boids[i].position.z));
         [ dx, dy, dz ] = stayInBounds(boids[i], { x: dx, y: dy, z: dz });
 
-        // TODO: set rotation
-        const q = new THREE.Quaternion();
-        q.setFromUnitVectors(new THREE.Vector3(boids[i].rotation.x, boids[i].rotation.y, boids[i].rotation.z), new THREE.Vector3(dx, dy, dz));
-        boids[i].applyQuaternion(q);
-        debugger;
+        // set rotation
+        // const q = new THREE.Quaternion();
+        // q.setFromUnitVectors(new THREE.Vector3(boids[i].rotation.x, boids[i].rotation.y, boids[i].rotation.z), new THREE.Vector3(dx, dy, dz));
+        // boids[i].applyQuaternion(q);
+        boids[i].lookAt(new THREE.Vector3(boids[i].position.x - dx * TURN_RATE, boids[i].position.y - dy * TURN_RATE, boids[i].position.z - dz * TURN_RATE));
 
         // make final movement
         boids[i].position.x += dx;
