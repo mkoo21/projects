@@ -1,18 +1,18 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const NUM_BOIDS = 50;
-const Z_RANGE = 3; // 6
-const VISION_RANGE = 2.2;
+const NUM_BOIDS = 60;
+const Z_RANGE = 5; // 6
+const VISION_RANGE = 2.7;
 const COLLISION_RANGE = 1.5;
 const VERY_LARGE_NUMBER = 9000; // larger than VISION_RANGE, hopefully
 
 // params
-const COHERENCE = 0.025;
-const SEPARATION = 0.08;
-const ALIGNMENT = 0.03;
+const COHERENCE = 0.0025;
+const SEPARATION = 0.008;
+const ALIGNMENT = 0.003;
 
-const SPEED_LIMIT = 0.1; // 0.1
+const SPEED_LIMIT = 0.15; // 0.1
 const INITIAL_SPEED = 0.04;
 const INITIAL_POSITION = 12; // 10
 const BOID_SIZE_PARAMS = [0, 0.2, 1];
