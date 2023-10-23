@@ -12,8 +12,8 @@ const COHERENCE = 0.0025;
 const SEPARATION = 0.005; // should be higher than the rest
 const ALIGNMENT = 0.0032;
 
-const SPEED_LIMIT = 0.15;
-const INITIAL_SPEED = 0.04;
+const SPEED_LIMIT = 0.16;
+const INITIAL_SPEED = 0.1;
 const INITIAL_POSITION = 14;
 const BOID_SIZE_PARAMS = [0, 0.2, 1];
 const TURN_RATE = 0.1;
@@ -80,7 +80,7 @@ export const initBoids = (scene: THREE.Scene) => {
 
 const getStayInBoundsFromCanvasSize = (width: number, height: number) => (boid: Boid, velocity: Velocity) => {
     // TODO: this calculation is for a cube
-    [ width, height ] = [ 15, 10 ]; // testing
+    [ width, height ] = [ 15, 9.5 ]; // testing
     const turnFactor = -1;
 
     // u-turn if oob and heading further oob
