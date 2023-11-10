@@ -9,7 +9,11 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<section class="hero">
+		<h1>There will be a cool graphic here</h1>
+</section>
+
+<section class="main">
 	<h1>
 		<span class="welcome">
 			<picture>
@@ -39,6 +43,24 @@
 
 	h1 {
 		width: 100%;
+	}
+
+	.hero {
+		position: fixed;
+		inset: 0px;
+		height: 100dvh;
+		width: 100dvw;
+		background: white;
+		
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		z-index: -1;
+	}
+
+	.main {
+		margin-top: 100dvh;
+		background: white;
 	}
 
 	.welcome {

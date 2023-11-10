@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const NUM_BOIDS = 60;
 const Z_RANGE = 5; // 6
