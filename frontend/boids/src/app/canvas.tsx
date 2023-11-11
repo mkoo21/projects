@@ -2,14 +2,13 @@
 
 import { useMemo, useEffect, useReducer, useState, useRef } from 'react';
 import { initScene, initLoop } from './boids';
+import fpsReducer, { FPS_INITIAL_VALUE} from './fpsReducer';
 
 const CANVAS_HEIGHT = 600;
 
 const Canvas = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [ frameCount, setFrameCount ] = useState(0); // for tracking framerate
-    const [ fps, setFps ] = useState<number | null>(null);
-    const [ timer, setTimer ] = useState<ReturnType<typeof setInterval> | null>(null);
+    const [ fpsState, fpsDispatch ] = useReducer(fpsReducer, FPS_INITIAL_VALUE);
 
     const { scene, camera, renderer } = useMemo(() => {
         if(!document) return { scene: null, camera: null, renderer: null };
@@ -17,15 +16,16 @@ const Canvas = () => {
     }, []);
 
     const incrementFrames = () => {
-        setFrameCount((frameCount) => {
-            return frameCount + 1
-        });
+        fpsDispatch({ type: "increment" })
     };
 
-    const fpsTick = () => {
-        console.log(frameCount)
-        setFps(frameCount);
-        setFrameCount(0);
+    const setFpsTimer = () => {
+        if(fpsState.timerId) return;
+        const tick = () => fpsDispatch({ type: "tick" });
+        fpsDispatch({
+            type: "set_timer",
+            payload: tick,
+        })
     }
 
     useEffect(() => {
@@ -35,11 +35,6 @@ const Canvas = () => {
         const [ canvasWidth, canvasHeight ] = [ element.clientWidth || window.innerWidth, CANVAS_HEIGHT ];
         renderer.setSize( canvasWidth, canvasHeight );
         element.replaceChildren( renderer.domElement );
-
-        // track framerate
-        if(!timer) {
-            setTimer(setInterval(fpsTick, 1000));
-        };
 
         // animate canvas
         const loop = initLoop(scene, camera);
@@ -53,7 +48,19 @@ const Canvas = () => {
 
     }, [camera, renderer, scene]);
 
-    return <div ref={containerRef} />;
+    useEffect(() => {
+        setFpsTimer();
+        return () => {
+            if(fpsState.timerId) {
+                clearInterval(fpsState.timerId);
+            }
+        }
+    }, []);
+
+    return <>
+        <div ref={containerRef} />
+        Estimated fps: { fpsState.measuredFrameRate }
+    </>;
 };
 
 const NextIsStupid = () => {

@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 type SET_TIMER_ACTION = {
     type: "set_timer";
-    payload: ReturnType<typeof setInterval>;
+    payload: () => void;
 }
 export type FPS_ACTION = {
     type: "increment" | "tick";
@@ -9,13 +9,13 @@ export type FPS_ACTION = {
 
 export type STATE_TYPE = {
     framesSinceLastTick: number;
-    measuredFramerate: number | null;
+    measuredFrameRate: number | null;
     timerId: ReturnType<typeof setInterval> | null;
 };
 
 export const FPS_INITIAL_VALUE: STATE_TYPE = {
     framesSinceLastTick: 0,
-    measuredFramerate: null,
+    measuredFrameRate: null,
     timerId: null,
 };
 
@@ -37,11 +37,11 @@ export default (state: STATE_TYPE, action: FPS_ACTION) => {
             }
         case "set_timer":
             if(state.timerId) {
-                clearTimeout(state.timerId);
+                return state;
             }
             return {
                 ...state,
-                timeId: action.payload,
+                timerId: setInterval(action.payload, 1000),
             }
     }
 };
