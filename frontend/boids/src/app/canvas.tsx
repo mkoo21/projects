@@ -59,7 +59,8 @@ const Canvas = () => {
 
     return <>
         <div ref={containerRef} />
-        Estimated fps: { fpsState.measuredFrameRate }
+        This animation was tuned to look good at about 60 fps. The boids will take several seconds to agree on which direction to swim :)<br />
+        Your estimated fps: { fpsState.measuredFrameRate }
     </>;
 };
 

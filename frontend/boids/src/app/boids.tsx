@@ -9,9 +9,9 @@ const VERY_LARGE_NUMBER = 9000; // larger than VISION_RANGE
 // params
 const COHERENCE = 0.0025;
 const SEPARATION = 0.005; // should be higher than the rest
-const ALIGNMENT = 0.0032;
+const ALIGNMENT = 0.0036;
 
-const SPEED_LIMIT = 0.16;
+const SPEED_LIMIT = 0.2;
 const INITIAL_SPEED = 0.1;
 const INITIAL_POSITION = 14;
 const BOID_SIZE_PARAMS = [0, 0.2, 1];
