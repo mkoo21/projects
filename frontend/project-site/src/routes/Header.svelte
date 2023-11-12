@@ -32,9 +32,7 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+		<div id="menu" aria-label="one day there will be a menu here" />
 	</div>
 </header>
 
@@ -42,6 +40,7 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+		background: rgb(0,0,0,0.7);
 	}
 
 	.corner {

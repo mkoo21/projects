@@ -10,7 +10,7 @@
 </svelte:head>
 
 <section class="hero">
-		<h1>There will be a cool graphic here</h1>
+		<h1>This is a cool graphic</h1>
 </section>
 
 <section class="main">

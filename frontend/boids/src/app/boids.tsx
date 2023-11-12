@@ -6,7 +6,6 @@ const VISION_RANGE = 2.9;
 const COLLISION_RANGE = 1.4;
 const VERY_LARGE_NUMBER = 9000; // larger than VISION_RANGE
 
-// params
 const COHERENCE = 0.0025;
 const SEPARATION = 0.005; // should be higher than the rest
 const ALIGNMENT = 0.0036;

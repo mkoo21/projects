@@ -12,5 +12,7 @@ export default defineConfig({
 		AutoImport({
 			resolvers: [
 				IconResolver(), // not working
-			]}),
+			]
+		})
+	]
 });
