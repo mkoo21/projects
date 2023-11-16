@@ -16,6 +16,7 @@
 		"@sveltejs/kit": "^1.20.4",
 		"@sveltejs/vite-plugin-svelte": "^2.4.6",
 		"@types/cookie": "^0.5.1",
+		"sass": "^1.69.5",
 		"svelte": "^4.0.5",
 		"svelte-breakpoints": "^0.2.0",
 		"svelte-check": "^3.4.3",
