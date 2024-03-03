@@ -1,11 +1,15 @@
-<script>
+<script lang="ts">
     import DotsHorizontal from "~icons/mdi/dots-horizontal";
-    
+    export let sidebarOpen: Boolean;
+    export let headerRef;
+    const handleSidebarIconClick = () => {
+        sidebarOpen = !sidebarOpen;
+    };
 </script>
 
-<header>
+<header bind:this={headerRef}>
     <div class="left cell">
-        <span class="hbtn" style=""><DotsHorizontal style="font-size:1.5em"  /></span>
+        <span class="hbtn" on:click={handleSidebarIconClick} role="presentation"><DotsHorizontal style="font-size:1.5em"  /></span>
     </div>
     <div class="middle"></div>
     <div class="right"></div>
