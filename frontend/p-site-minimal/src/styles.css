@@ -1,0 +1,40 @@
+@import '@fontsource/fira-mono'; /* https://fonts.google.com/specimen/Fira+Mono */
+/* @import '@fontsource/space-mono'; /* https://fonts.google.com/specimen/Space+Mono */
+@import '@fontsource/source-code-pro'; /* https://fonts.google.com/specimen/Source+Code+Pro */
+@import '@fontsource/play'; /* https://fonts.google.com/specimen/Play */
+/* @import '@fontsource/jacquard-24'; /* https://fonts.google.com/specimen/Jacquard+24/ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-mono: 'Fira Mono', monospace;
+    --font-ornamental: "Source Code Pro", monospace;
+    font-family: var(--font-mono);
+    --text-color: #ccc;
+    color: var(--text-color);
+    --shadow-color: #ccf;
+}
+
+.font-ornamental {
+    font-family: var(--font-ornamental);
+}
+
+body {
+    /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(25,25,25,1) 35%, rgba(40,40,40,1) 100%); */
+    background: radial-gradient(#000, #252525);
+    height: 100vh;
+}
+
+@layer base {
+    h1 {
+      @apply text-3xl font-semibold;
+    }
+    h2 {
+      @apply text-xl font-semibold;
+    }
+    section {
+      @apply flex flex-col justify-center items-center h-screen;
+    }
+}
