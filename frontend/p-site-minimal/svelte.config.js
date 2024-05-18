@@ -13,7 +13,9 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			'/src': 'src'
+			'/src': 'src',
+			'three/addons/loaders': 'node_modules/three/examples/jsm/loaders',
+			'three/addons/controls': 'node_modules/three/examples/jsm/controls'
 		}
 	},
 };
