@@ -25,7 +25,8 @@ export const initScene = (canvas: HTMLDivElement | undefined) => {
         antialias: true,
         alpha: true,
     });
-    const controls = new OrbitControls(camera, canvas);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setSize( window.innerWidth, window.innerHeight );
     
@@ -44,8 +45,9 @@ export const initScene = (canvas: HTMLDivElement | undefined) => {
         background.rotation.y += 0.0005;
         background.rotation.z -= 0.0001;
         requestAnimationFrame( main );
+        controls.update();
     }
-    return { scene, camera, renderer, main, composer };
+    return { scene, camera, renderer, main, composer, controls };
 };
 
 const loadBackground = (scene: THREE.Scene) => {
@@ -117,30 +119,29 @@ const composeEffects = (renderer: THREE.WebGLRenderer, scene: THREE.Scene, camer
 
 const createStars = (scene: THREE.Scene) => {
     const texture = loader.load('/src/assets/p3-ttfn70.png');
-    var position = new THREE.BufferAttribute( new Float32Array(3*PARTICLE_COUNT), 3),
-        color = new THREE.BufferAttribute( new Float32Array(3*PARTICLE_COUNT), 3),
-        v = new THREE.Vector3( );
+    const position = new THREE.BufferAttribute(new Float32Array(3*PARTICLE_COUNT), 3),
+        color = new THREE.BufferAttribute(new Float32Array(3*PARTICLE_COUNT), 3),
+        v = new THREE.Vector3();
 
-    for( var i=0; i<PARTICLE_COUNT; i++ )
-    {
-            v.randomDirection( ).setLength( 3+2*Math.pow(Math.random(),1/3) );
-            position.setXYZ( i, v.x, v.y, v.z );
-            color.setXYZ( i, Math.random( ), Math.random( ), Math.random( ) );
+    for(let i = 0; i < PARTICLE_COUNT; i++) {
+        v.randomDirection().setLength(10);
+        position.setXYZ(i, v.x, v.y, v.z);
+        color.setXYZ(i, Math.random( ), Math.random( ), Math.random( ));
     }
 
-    var geometry = new THREE.BufferGeometry( );
-            geometry.setAttribute( 'position', position );
-            geometry.setAttribute( 'color', color );
-    var material = new THREE.PointsMaterial( {
-                    color: 'white',
-                    vertexColors: true,
-                    size: 2,
-                    sizeAttenuation: true,
-                    map: texture,
-                    transparent: true,
-                    blending: THREE.AdditiveBlending,
-                    depthWrite: false,
-            } );
-    var cloud = new THREE.Points( geometry, material );
-    scene.add( cloud );
+    const geometry = new THREE.BufferGeometry( );
+        geometry.setAttribute( 'position', position );
+        geometry.setAttribute( 'color', color );
+    const material = new THREE.PointsMaterial({
+        color: 'white',
+        vertexColors: true,
+        size: 2,
+        sizeAttenuation: true,
+        map: texture,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
+    const cloud = new THREE.Points(geometry, material);
+    scene.add(cloud);
 }

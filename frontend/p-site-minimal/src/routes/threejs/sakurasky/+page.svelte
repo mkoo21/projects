@@ -2,7 +2,6 @@
     import { onMount } from 'svelte';
     import { initScene } from './scripts';
 
-
     let canvasElement: HTMLDivElement | undefined;
 
     onMount(() => {
