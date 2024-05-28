@@ -1,0 +1,9 @@
+2024-05-14 14:07:24.632 UTC [1] LOG:  starting PostgreSQL 14.10 (Debian 14.10-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+2024-05-14 14:07:24.633 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2024-05-14 14:07:24.633 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2024-05-14 14:07:24.641 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-05-14 14:07:24.652 UTC [69] LOG:  database system was shut down at 2024-05-14 14:07:24 UTC
+2024-05-14 14:07:24.660 UTC [1] LOG:  database system is ready to accept connections
+2024-05-14 14:07:24.768 UTC [80] ERROR:  duplicate key value violates unique constraint "pg_extension_name_index"
+2024-05-14 14:07:24.768 UTC [80] DETAIL:  Key (extname)=(uuid-ossp) already exists.
+2024-05-14 14:07:24.768 UTC [80] STATEMENT:  CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
