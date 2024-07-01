@@ -38,3 +38,8 @@ body {
       @apply flex flex-col justify-center items-center h-screen;
     }
 }
+
+/* lil-gui threejs adjust */
+.lil-gui select option {
+  color: black;
+}

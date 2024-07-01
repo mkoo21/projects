@@ -3,6 +3,7 @@
 <style>
     h1 {
         text-shadow: 2px 2px 5px #ccf;
+        user-select: none;
     }
     h1 :global(.scrambled) {
         color: #333;

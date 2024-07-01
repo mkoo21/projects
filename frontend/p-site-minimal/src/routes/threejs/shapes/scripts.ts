@@ -2,19 +2,22 @@ import { SelectiveBloomEffect, EffectComposer, EffectPass, RenderPass } from "po
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { MMDLoader } from 'three/addons/loaders/MMDLoader.js';
-import { MMDAnimationHelper } from 'three/addons/animation/MMDAnimationHelper.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-// import { FBXLoader } from 'three/addons/loaders/FBXLoader';
-// import { RGBELoader } from 'three/addons/loaders/RGBELoader';
-
-const CLOUD_RADIUS = 200;
-
-const MODELS_PREFIX = '/src/lib/models';
-const tdaModel = '/src/lib/models/TdaMikuVer1.10/Tda式初音ミク・アペンド_Ver1.10.pmx';
-const vpdFiles = Array.from({ length: 8}, (x, i) => `${MODELS_PREFIX}/Pose Pack 1 - Snorlaxin/${i + 1}.vpd`);
+import { GUI, NumberController } from 'three/addons/libs/lil-gui.module.min.js';
 
 const loader = new THREE.TextureLoader();
+
+enum Shapes {
+    Sphere,
+    Ellipse, 
+}
+
+const SETTINGS = {
+    'particle count': 150,
+    'shape': Shapes[Shapes.Sphere],
+}
+
+const ELLIPSE_PARAMS = { a: 10, b: 10, c: 10, minA: 0, minB: 0, minC: 0, maxTheta: 2 * Math.PI, maxPhi: Math.PI, surfaceOnly: true };
+const SPHERE_PARAMS = { radius: 10, maxTheta: 2 * Math.PI, maxPhi: Math.PI };
 
 export const initScene = (canvas: HTMLDivElement | undefined) => {
     if(!canvas) return;
@@ -32,7 +35,6 @@ export const initScene = (canvas: HTMLDivElement | undefined) => {
     const composer = composeEffects(renderer, scene, camera);
     const background = loadBackground(scene);
     const cloud = createCloud({ count: 150, ellipseParams: { a: 20, b: 4, c: 20, surfaceOnly: false }});
-    console.log(THREE.Color.NAMES)
     scene.add(cloud);
     setLighting(scene);
     // loadModels(scene);
@@ -40,7 +42,6 @@ export const initScene = (canvas: HTMLDivElement | undefined) => {
     document.body.replaceChildren( renderer.domElement );
 
     const main = () => {
-
         renderer.render( scene, camera );
         background.rotation.x -= 0.0002;
         background.rotation.y += 0.0005;
@@ -48,7 +49,45 @@ export const initScene = (canvas: HTMLDivElement | undefined) => {
         requestAnimationFrame( main );
         controls.update();
     }
+    initGui();
     return { scene, camera, renderer, main, composer, controls };
+};
+
+const initGui = () => {
+    const panel = new GUI();
+    const settings = {
+        ...SETTINGS,
+    };
+    const shapesFolder = panel.addFolder('Shapes');
+    let paramsFolder = panel.addFolder('Params');
+    const setSphereParams = () => {
+        paramsFolder.add(SPHERE_PARAMS, 'radius', 0, 100, 1);
+    };
+    const setEllipseParams = () => {
+        paramsFolder.add(ELLIPSE_PARAMS, 'a', 0, 100, 1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'b', 0, 100, 1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'c', 0, 100, 1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'minA', 0, 100, 1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'minB', 0, 100, 1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'minC', 0, 100, 1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'maxTheta', 0, 2 * Math.PI, 0.1);
+        paramsFolder.add(ELLIPSE_PARAMS, 'maxPhi', 0, Math.PI, 0.1);
+    };
+    const onShapeChange = (shape: string | number) => {
+        paramsFolder.destroy();
+
+        paramsFolder = panel.addFolder('Params');
+        switch (shape) {
+            case Shapes[Shapes.Sphere]:
+                setSphereParams();
+            case Shapes[Shapes.Ellipse]:
+                setEllipseParams();
+        };
+    }
+
+    shapesFolder.add<typeof settings, keyof typeof settings>(settings, "shape", Object.keys(Shapes).filter(x => isNaN(Number(x)))).onChange(onShapeChange);
+    setSphereParams(); // because sphere is default
+    // shapesFolder.add<typeof settings, keyof typeof settings>(settings, "shape").onChange(onShapeChange);
 };
 
 const loadBackground = (scene: THREE.Scene) => {
@@ -69,7 +108,7 @@ const loadBackground = (scene: THREE.Scene) => {
 const setCamera = () => {
     const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
     // camera.position.set(0, 5, 70);
-    camera.position.set(0, 0, 50)
+    camera.position.set(0, 0, 50);
     return camera;
 };
 
@@ -80,27 +119,6 @@ const setLighting = (scene: THREE.Scene) => {
     directionalLight.position.set(20, 100, 10 );
     directionalLight.castShadow = true;
     scene.add( directionalLight );
-};
-
-const loadModels = (scene: THREE.Scene) => {
-    const loader = new MMDLoader();
-    const helper = new MMDAnimationHelper();
-    // const loader = new GLTFLoader();
-    loader.load(tdaModel,
-    (model) => {
-        model.position.y = - 10;
-        scene.add( model );
-
-        loader.loadVPD(vpdFiles[1], false, (vpd) => {
-            helper.pose(model, vpd)
-        });
-    },
-    (xhr) => {
-        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    },
-    (error) => {
-        console.error(error)
-    })
 };
 
 const composeEffects = (renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.Camera) => {
@@ -118,15 +136,19 @@ const composeEffects = (renderer: THREE.WebGLRenderer, scene: THREE.Scene, camer
 };
 
 interface CloudParams {
+    color?: THREE.Color;
+    ellipseParams?: EllipseParams;
+    sphereParams?: SphereParams;
     count?: number;
-    color?: THREE.Color,
-    ellipseParams?: EllipseParams
+    shape: Shapes[Shapes.Sphere];
 }
 
 const createCloud = (params?: CloudParams) => {
     const count = params?.count || 100;
     const color = params?.color || new THREE.Color('plum');
+    const sphereParams = params?.sphereParams || {};
     const ellipseParams = params?.ellipseParams || {};
+    const shape = params?.shape;
 
     const texture = loader.load('/src/assets/p3-ttfn70.png');
     const positions = new THREE.BufferAttribute(new Float32Array(3 * count), 3),
@@ -169,9 +191,8 @@ interface EllipseParams {
 };
 
 const genPointEllipse = ( _params?: EllipseParams ) => {
-    const DEFAULTPARAMS = { a: 10, b: 10, c: 10, minA: 0, minB: 0, minC: 0, maxTheta: 2 * Math.PI, maxPhi: Math.PI, surfaceOnly: true };
     const params = {
-        ...DEFAULTPARAMS,
+        ...ELLIPSE_PARAMS,
         ..._params,
     };
 
@@ -184,5 +205,25 @@ const genPointEllipse = ( _params?: EllipseParams ) => {
     const radius = params.surfaceOnly ? 1 : Math.random();
     v.setFromSphericalCoords(radius, phi, theta); // generate point on unit sphere
     v.multiplyVectors(v, t); // stretch to ellipse
+    return v;
+};
+
+interface SphereParams {
+    radius?: number;
+    maxTheta?: number;
+    maxPhi?: number;
+};
+
+const genPointSphere = ( _params?: SphereParams ) => {
+    const params = {
+        ...SPHERE_PARAMS,
+        ..._params,
+    }
+
+    const v = new THREE.Vector3();
+    const theta = Math.random() * params.maxTheta;
+    const phi = Math.random() * params.maxPhi;
+    const { radius } = params;
+    v.setFromSphericalCoords(radius, phi, theta);
     return v;
 };
