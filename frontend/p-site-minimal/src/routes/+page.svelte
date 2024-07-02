@@ -2,8 +2,14 @@
 	import Grid from '/src/lib/components/Grid.svelte';
 	import Card from '/src/lib/components/Card.svelte';
 	import IconThreeJS from '$lib/images/icon_threejs.png';
-	import Header from './Scrambler.svelte';
+	import Scrambler from './Scrambler.svelte';
 	import Spinner from '/src/lib/components/Spinner.svelte';
+
+	let loaded = false;
+
+	setTimeout(() => {
+		loaded = true;
+	}, 1500);
 </script>
 
 <svelte:head>
@@ -11,9 +17,12 @@
 	<meta name="description" content="Martin Koo's portfolio site" />
 </svelte:head>
 
+{#if !loaded}
 <section>
 	<Spinner />
 </section>
+
+{:else}
 <section>
 	<Grid>
 		<Card>
@@ -22,3 +31,4 @@
 		</Card>
 	</Grid>
 </section>
+{/if}

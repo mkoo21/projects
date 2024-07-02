@@ -11,20 +11,20 @@
         box-sizing: border-box;
     }
     .lds-dual-ring {
-        display: inline-block;
-        width: 80px;
-        height: 80px;
+        display: block;
+        width: 25vh;
+        height: 25vh;
     }
     .lds-dual-ring:after {
         content: " ";
         display: block;
-        width: 64px;
-        height: 64px;
-        margin: 8px;
+        width: 100%;
+        height: 100%;
+        /* margin: 8px; */
         border-radius: 50%;
         border: 6.4px solid currentColor;
         border-color: currentColor transparent currentColor transparent;
-        animation: lds-dual-ring 1.2s linear infinite;
+        animation: lds-dual-ring 1.2s cubic-bezier(0.1, 0.5, 0.6, 0.1) infinite;
     }
     @keyframes lds-dual-ring {
         0% {
