@@ -9,7 +9,7 @@
 
 	setTimeout(() => {
 		loaded = true;
-	}, 1500);
+	}, 750);
 </script>
 
 <svelte:head>

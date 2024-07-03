@@ -24,7 +24,7 @@
         border-radius: 50%;
         border: 6.4px solid currentColor;
         border-color: currentColor transparent currentColor transparent;
-        animation: lds-dual-ring 1.2s cubic-bezier(0.1, 0.5, 0.6, 0.1) infinite;
+        animation: lds-dual-ring 0.75s cubic-bezier(0.1, 0.6, 0.8, 0.1) infinite;
     }
     @keyframes lds-dual-ring {
         0% {
