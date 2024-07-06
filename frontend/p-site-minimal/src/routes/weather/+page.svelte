@@ -7,7 +7,6 @@
 	const forecast = async () => {
 		const response =  await fetch('/weather');	
 		data = await response.json();
-		debugger;
 	}
 
 	onMount(() => {
