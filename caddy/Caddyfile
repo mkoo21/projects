@@ -1,0 +1,48 @@
+
+
+sonarr.martin-is-awesome.win, www.sonarr.martin-is-awesome.win {
+  log {
+    output file /var/log/sonarr.access.log
+  }
+
+  reverse_proxy /outpost.goauthentik.io/* http://authentik-server:9000
+
+
+  # forward authentication to outpost
+  forward_auth authentik-server:9000 {
+    uri /outpost.goauthentik.io/auth/caddy
+
+    # capitalization of the headers is important, otherwise they will be empty
+    copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version authorization
+
+    # optional, in this config trust all private ranges, should probably be set to the outposts IP
+    trusted_proxies private_ranges
+  }
+
+  reverse_proxy sonarr:{env.SONARR_PORT}
+}
+
+authentik.martin-is-awesome.win, www.authentik.martin-is-awesome.win {
+  reverse_proxy authentik-server:{env.AUTHENTIK_PORT}
+  log {
+    output file /var/log/authentik.access.log
+  }
+}
+
+immich.martin-is-awesome.win, www.immich.martin-is-awesome.win {
+  reverse_proxy immich_server:{env.IMMICH_PORT}
+  log {
+    output file /var/log/immich.access.log
+  }
+}
+
+media.martin-is-awesome.win, www.media.martin-is-awesome.win {
+  reverse_proxy jellyfin:{env.JELLYFIN_PORT}
+  log {
+    output file /var/log/jellyfin.access.log
+  }
+}
+
+dev.martin-is-awesome.win,  www.dev.martin-is-awesome.win {
+  reverse_proxy 10.88.111.2:9000
+}

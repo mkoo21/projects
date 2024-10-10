@@ -1,0 +1,36 @@
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.8.4-alpine
+    restart: unless-stopped
+    env_file: ".env"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./site:/srv
+      - ./logs/:/var/log
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - immich_default
+      - paperless_default
+      - authentik_default
+      - sonarr_default
+      - jellyfin_default
+networks:
+  immich_default:
+    external: true
+  paperless_default:
+    external: true
+  authentik_default:
+    external: true
+  sonarr_default:
+    external: true
+  jellyfin_default:
+    external: true
+volumes:
+  caddy_data:
+  caddy_config:

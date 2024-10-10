@@ -1,0 +1,6 @@
+apps/jellyfin/config/data
+apps/jellyfin/config/log
+apps/jellyfin/cache
+apps/immich-app/
+authentik/authentik-postgres-dump
+caddy/logs/
