@@ -1,0 +1,33 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/settings
+title: Martin's Homepage
+headerStyle: clean
+background:
+  image: https://wallpapercave.com/wp/wp4118230.jpg
+  blur: md
+  saturate: 50
+  brightness: 50
+  opacity: 70
+theme: dark
+color: zinc
+layout:
+  Apps:
+    header: true
+    style: row
+    columns: 4
+  Operations:
+    header: true
+    style: row
+    columns: 4
+  Media:
+    header: true
+    style: row
+    columns: 4
+  Monitoring:
+    header: true
+    style: row
+    columns: 4
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey

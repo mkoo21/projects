@@ -3,5 +3,5 @@ apps/jellyfin/config/log
 apps/jellyfin/cache
 apps/immich-app/library
 apps/immich-app/postgres
-authentik/authentik_postgres_dump
+ops/authentik/authentik_postgres_dump
 caddy/logs/

@@ -1,0 +1,12 @@
+- datetime:
+    text_size: xl
+    format:
+      timeStyle: short
+- openmeteo:
+    label: Toronto # optional
+    latitude: 43.6532
+    longitude: -79.3832
+    units: metric
+    cache: 240 # Time in minutes to cache API responses, to stay within limits
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1

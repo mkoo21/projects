@@ -1,0 +1,383 @@
+[2024-10-10T19:39:11.582Z] info: docker.yaml was copied to the config folder
+[2024-10-10T19:39:11.584Z] info: services.yaml was copied to the config folder
+[2024-10-10T19:39:11.584Z] info: bookmarks.yaml was copied to the config folder
+[2024-10-10T19:39:11.588Z] info: custom.css was copied to the config folder
+[2024-10-10T19:39:11.589Z] info: custom.js was copied to the config folder
+[2024-10-10T19:39:11.611Z] info: kubernetes.yaml was copied to the config folder
+[2024-10-10T19:44:15.532Z] error: undefined
+[2024-10-10T21:22:55.275Z] error: undefined
+[2024-10-10T21:46:50.670Z] error: Failed to load services.yaml, please check for errors
+[2024-10-10T21:46:50.670Z] error: YAMLException: bad indentation of a sequence entry (20:11)
+
+ 17 |         href: http://localhost/
+ 18 |         description: Homepage is 😎
+ 19 | - Apps
+ 20 |     widget:
+----------------^
+ 21 |     type: authentik
+ 22 |     url: http://authentik.host.or.ip:22070
+[2024-10-10T21:46:50.671Z] error: Failed to load services.yaml, please check for errors
+[2024-10-10T21:46:50.671Z] error: YAMLException: bad indentation of a sequence entry (20:11)
+
+ 17 |         href: http://localhost/
+ 18 |         description: Homepage is 😎
+ 19 | - Apps
+ 20 |     widget:
+----------------^
+ 21 |     type: authentik
+ 22 |     url: http://authentik.host.or.ip:22070
+[2024-10-10T21:46:50.742Z] error: Failed to load services.yaml, please check for errors
+[2024-10-10T21:46:50.742Z] error: YAMLException: bad indentation of a sequence entry (20:11)
+
+ 17 |         href: http://localhost/
+ 18 |         description: Homepage is 😎
+ 19 | - Apps
+ 20 |     widget:
+----------------^
+ 21 |     type: authentik
+ 22 |     url: http://authentik.host.or.ip:22070
+[2024-10-10T21:47:21.802Z] error: Failed to load services.yaml, please check for errors
+[2024-10-10T21:47:21.802Z] error: YAMLException: bad indentation of a sequence entry (21:15)
+
+ 18 |         description: Homepage is 😎
+ 19 | - Apps
+ 20 |     - Authentik
+ 21 |         widget:
+--------------------^
+ 22 |         type: authentik
+ 23 |         url: http://authentik.host.or.ip:22070
+[2024-10-10T21:47:21.881Z] error: Failed to load services.yaml, please check for errors
+[2024-10-10T21:47:21.881Z] error: YAMLException: bad indentation of a sequence entry (21:15)
+
+ 18 |         description: Homepage is 😎
+ 19 | - Apps
+ 20 |     - Authentik
+ 21 |         widget:
+--------------------^
+ 22 |         type: authentik
+ 23 |         url: http://authentik.host.or.ip:22070
+[2024-10-10T21:47:22.562Z] error: Failed to load services.yaml, please check for errors
+[2024-10-10T21:47:22.562Z] error: YAMLException: bad indentation of a sequence entry (21:15)
+
+ 18 |         description: Homepage is 😎
+ 19 | - Apps
+ 20 |     - Authentik
+ 21 |         widget:
+--------------------^
+ 22 |         type: authentik
+ 23 |         url: http://authentik.host.or.ip:22070
+[2024-10-10T21:57:00.084Z] error: <httpProxy> Error calling https://https//authentik.martin-is-awesome.win/api/v3/core/users/...
+[2024-10-10T21:57:00.086Z] error: <httpProxy> [
+  500,
+  Error: getaddrinfo EAI_AGAIN https
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) {
+    errno: -3001,
+    code: 'EAI_AGAIN',
+    syscall: 'getaddrinfo',
+    hostname: 'https'
+  }
+]
+[2024-10-10T21:57:00.086Z] error: <credentialedProxyHandler> HTTP Error 500 calling https://https//authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:57:00.087Z] error: <httpProxy> Error calling https://https//authentik.martin-is-awesome.win/api/v3/events/events/per_month/...
+[2024-10-10T21:57:00.087Z] error: <httpProxy> [
+  500,
+  Error: getaddrinfo EAI_AGAIN https
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) {
+    errno: -3001,
+    code: 'EAI_AGAIN',
+    syscall: 'getaddrinfo',
+    hostname: 'https'
+  }
+]
+[2024-10-10T21:57:00.088Z] error: <credentialedProxyHandler> HTTP Error 500 calling https://https//authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:57:05.084Z] error: <httpProxy> Error calling https://https//authentik.martin-is-awesome.win/api/v3/events/events/per_month/...
+[2024-10-10T21:57:05.084Z] error: <httpProxy> [
+  500,
+  Error: getaddrinfo EAI_AGAIN https
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) {
+    errno: -3001,
+    code: 'EAI_AGAIN',
+    syscall: 'getaddrinfo',
+    hostname: 'https'
+  }
+]
+[2024-10-10T21:57:05.084Z] error: <credentialedProxyHandler> HTTP Error 500 calling https://https//authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:15.266Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:58:15.268Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:15.404Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:58:15.411Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:15.421Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:15.498Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:16.889Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:58:17.060Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:17.060Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:29.026Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:29.037Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:29.043Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:58:29.131Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:29.144Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:58:29.151Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:41.355Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T21:58:41.363Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:41.367Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:41.931Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T21:58:41.934Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T21:58:41.936Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:00:36.882Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:00:36.889Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:00:36.905Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:00:53.430Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:00:53.432Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:00:53.439Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:00:54.434Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:00:54.437Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:00:54.445Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:00:55.980Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:00:55.984Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:00:55.985Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:17.604Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:17.612Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:17.614Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:17.844Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:17.851Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:17.852Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:19.030Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:19.034Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:19.045Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:19.660Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:19.670Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:19.672Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:20.922Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:20.933Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:20.941Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:21.268Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:21.279Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:21.284Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:21.473Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:21.474Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:04:21.491Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:24.750Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:04:24.762Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:04:24.769Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:26:18.800Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:26:18.803Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:26:18.812Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:26:19.039Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login_failed
+[2024-10-10T22:26:19.045Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/events/events/per_month/?action=login
+[2024-10-10T22:26:19.046Z] error: <credentialedProxyHandler> HTTP Error 403 calling https://authentik.martin-is-awesome.win/api/v3/core/users/?page_size=1
+[2024-10-10T22:30:25.632Z] error: <httpProxy> Error calling http://0.0.0.0:3011/api/status-page/authentik...
+[2024-10-10T22:30:25.635Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 0.0.0.0:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '0.0.0.0',
+    port: 3011
+  }
+]
+[2024-10-10T22:30:25.637Z] error: <httpProxy> Error calling http://0.0.0.0:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:30:25.637Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 0.0.0.0:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '0.0.0.0',
+    port: 3011
+  }
+]
+[2024-10-10T22:30:35.674Z] error: <httpProxy> Error calling http://0.0.0.0:3011/api/status-page/authentik...
+[2024-10-10T22:30:35.675Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 0.0.0.0:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '0.0.0.0',
+    port: 3011
+  }
+]
+[2024-10-10T22:30:35.676Z] error: <httpProxy> Error calling http://0.0.0.0:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:30:35.677Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 0.0.0.0:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '0.0.0.0',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:04.290Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:04.291Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:04.292Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:04.292Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:04.432Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:04.432Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:04.433Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:04.433Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:05.182Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:05.182Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:05.183Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:05.183Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:12.437Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:12.437Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:12.438Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:12.438Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:17.941Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:17.942Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:17.942Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:17.943Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:31.544Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:31.544Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:31.546Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:31.546Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:46.949Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/authentik...
+[2024-10-10T22:31:46.949Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
+[2024-10-10T22:31:46.950Z] error: <httpProxy> Error calling http://127.0.0.1:3011/api/status-page/heartbeat/authentik...
+[2024-10-10T22:31:46.950Z] error: <httpProxy> [
+  500,
+  Error: connect ECONNREFUSED 127.0.0.1:3011
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3011
+  }
+]
